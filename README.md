@@ -9,6 +9,9 @@
 git clone git@github.com:Eldaar-M/scrapy_parser_pep.git
 ```
 ## Перейдите в корневую папку проекта
+```
+cd scrapy_parser_pep
+```
 - Разверните виртуальное окружение
 ```
 python -m venv venv
