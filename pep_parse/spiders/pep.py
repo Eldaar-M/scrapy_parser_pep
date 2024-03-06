@@ -10,7 +10,9 @@ from pep_parse.items import PepParseItem
 class PepSpider(scrapy.Spider):
     name = PARSER_NAME
     allowed_domains = [ALLOWED_DOMAIN]
-    start_urls = [f'https://{ALLOWED_DOMAIN}/']
+    start_urls = [
+        f'https://{domain}/'.format(domain) for domain in allowed_domains
+    ]
 
     def parse(self, response):
         for pep_link in response.css(
@@ -26,11 +28,9 @@ class PepSpider(scrapy.Spider):
             'h1.page-title::text'
         ).get().split()
         yield PepParseItem(
-            dict(
-                number=number,
-                name=' '.join(name).strip(),
-                status=response.css(
-                    'dt:contains("Status")+dd abbr::text'
-                ).get()
-            )
+            number=number,
+            name=' '.join(name).strip(),
+            status=response.css(
+                'dt:contains("Status")+dd abbr::text'
+            ).get()
         )

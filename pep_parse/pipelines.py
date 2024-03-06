@@ -27,11 +27,12 @@ class PepParsePipeline:
         file_name = f'status_summary_{now_formatted}.csv'
         file_path = self.results_dir / file_name
         with open(file_path, 'w', encoding='utf-8') as f:
-            csv.writer(f,
-                       dialect=csv.unix_dialect,
-                       quoting=csv.QUOTE_NONE
-                       ).writerows((
-                           ('Статус', 'Количество'),
-                           *self.status_count.items(),
-                           ('Всего', sum(self.status_count.values())),
-                       ))
+            csv.writer(
+                f,
+                dialect=csv.unix_dialect,
+                quoting=csv.QUOTE_NONE
+            ).writerows((
+                ('Статус', 'Количество'),
+                *self.status_count.items(),
+                ('Всего', sum(self.status_count.values())),
+            ))
