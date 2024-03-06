@@ -11,7 +11,7 @@ class PepSpider(scrapy.Spider):
     name = PARSER_NAME
     allowed_domains = [ALLOWED_DOMAIN]
     start_urls = [
-        f'https://{domain}/'.format(domain) for domain in allowed_domains
+        f'https://{domain}/' for domain in allowed_domains
     ]
 
     def parse(self, response):
